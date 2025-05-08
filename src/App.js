@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Container, AppBar, Toolbar, Button } from '@mui/material';
+import TopUsers from './components/TopUser';
+import TrendingPosts from './components/TrendingPosts';
+import Feed from './components/Feed';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppBar position="static">
+        <Toolbar>
+          <Button color="inherit" component={Link} to="/">Top Users</Button>
+          <Button color="inherit" component={Link} to="/trending">Trending</Button>
+          <Button color="inherit" component={Link} to="/feed">Feed</Button>
+        </Toolbar>
+      </AppBar>
+      <Container sx={{ mt: 2 }}>
+        <Routes>
+          <Route path="/" element={<TopUsers />} />
+          <Route path="/trending" element={<TrendingPosts />} />
+          <Route path="/feed" element={<Feed />} />
+        </Routes>
+      </Container>
+    </Router>
   );
 }
 
